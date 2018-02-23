@@ -13,5 +13,5 @@ mkComponent folder "Test" |> writeFile
     imports = ["System.Collections.Generic"]
     fields = [mkField "Field0" "float"; { mkField "Field1" "List<int>" with showInInspector = false }] 
     constructor = true
-    wrapper = Some <| mkWrapper () }
+    wrapper = Some defaultWrapper }
 |> writeFile

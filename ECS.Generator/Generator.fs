@@ -34,7 +34,7 @@ module Components =
         constructor : bool
         wrapper : Wrapper option }
 
-    let mkWrapper () = {
+    let defaultWrapper = {
         showInMenu = true
         allowMultiple = false }
 
