@@ -1,1 +1,1 @@
-# BrokenBricksECSGenerator
+# BrokenBricksECS - Code Generator
