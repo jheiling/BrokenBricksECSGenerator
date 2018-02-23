@@ -74,7 +74,7 @@ module Components =
 
     let wrapper namespace' name = function
         | Some w ->
-            "" ::
+            [""; ""; ""] @
             (if w.showInMenu then [sprintf "[AddComponentMenu(\"%sComponents/%s\")]" (match namespace' with Some n -> n + "/" | None -> "") name] else []) @
             (if w.allowMultiple then [] else ["[DisallowMultipleComponent]"]) @
             [sprintf "public class %sDataComponent : ComponentDataWrapper<%sComponent> { }" name name]
