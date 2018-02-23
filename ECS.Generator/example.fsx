@@ -1,17 +1,24 @@
 ﻿#load "Generator.fs"
 open System.IO
-open ECS.Generator.Components
+open ECS.Generator
 
 
 
 let folder = Path.Combine (__SOURCE_DIRECTORY__, "example")
 
-mkComponent folder "Test" |> writeFile
+Components.mkComponent folder "test" |> Components.writeFile
 
-{ mkComponent folder "Test1" with 
-    namespace' = Some "TestNamespace"
+{ Components.mkComponent folder "test1" with 
+    namespace' = Some "testNamespace"
     imports = ["System.Collections.Generic"]
-    fields = [mkField "Field0" "float"; { mkField "Field1" "List<int>" with showInInspector = false }] 
+    fields = [Components.mkField "field0" "float"; { Components.mkField "field1" "List<int>" with showInInspector = false }] 
     constructor = true
-    wrapper = Some defaultWrapper }
-|> writeFile
+    wrapper = Some Components.defaultWrapper }
+|> Components.writeFile
+
+Systems.mkSystem folder "test" |> Systems.writeFile
+
+{ Systems.mkSystem folder "test1" with
+    namespace' = Some "testNamespace"
+    components = [Systems.mkComponent "test" "testComponent"; Systems.mkComponent "test1" "test1Component"] }
+|> Systems.writeFile
